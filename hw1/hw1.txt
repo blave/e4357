@@ -1,0 +1,139 @@
+E4357 class -- Homework 1
+David Blevins
+blave1@gmail.com
+
+Part 1. C function
+
+History: For the UCSC-SVE "Digital Design with FPGA" class, we had to implement
+a demonstration of the "Collatz conjecture", which is described in the comments
+below. I became interested in this conjecture, and so I decided to write a C
+program that would let me see which starting numbers had very numbers of iterations
+to reach "1". The program took about 1/2 hour to write and worked on the first
+run.
+
+The code below is currently configured to start with numbers 
+between 1E09 and 1E12 (although getting all the way to 1E12 would take a looong
+time). It only prints out starting numbers that have a >= 750 count to reach '1'.
+
+An example of the output is as follows: 
+
+------------------------------------------
+|  Collatz Conjecture iteration counts   |
+------------------------------------------
+
+starting number     iterations
+------------------------------
+1000000751                803
+1000000996                803
+1000000997                803
+1000000998                803
+1000001007                803
+1001395945                754
+1002260850                790
+1002260851                790
+1002260854                790
+1002260855                790
+1002404839                754
+1005252379                754
+....
+
+So the first line says that for 1,000,000,751, it takes 803 iterations for
+the conjecture to collapse to '1'.
+
+The interesting thing, at least to me, is that certain counts (such as 803)
+apply to more than one starting number.
+
+The program follows.
+
+#include<stdio.h>
+#include<stdlib.h>
+/*************************************************************************
+*  Collatz conjucture: starting with an arbitrary positive
+*  integer: if the number is even, divide by two. If the number is odd,
+*  triple it and add 1. E.g., starting with "6", the sequence is
+*	 	    6, 3, 10, 5, 16, 8, 4, 2, 1
+*  The "conjecture" is that no matter what number you start with, the
+*  sequence will eventually end at "1". The conjecture has been tested with
+*  extremely large starting numbers and always converges to '1', but 
+*  no-one has been able to mathematically prove that it is true for
+*  ALL numbers.
+*************************************************************************/
+
+void main(void)
+{
+	long long sequence;
+	long long i;
+	int count;
+
+	printf("------------------------------------------\n");
+	printf("\n|  Collatz Conjecture iteration counts   |\n");
+	printf("------------------------------------------\n\n\n");
+	printf("starting number     iterations\n");
+	printf("------------------------------\n");
+	for (i = 1E09; i <= 1E12; i++) {
+		sequence = i;
+		//printf("\nat start, sequence = %d\n", sequence);
+		count = 0;
+		while (sequence != 1) {
+			count++;
+			if (!(sequence % 2)) {
+				sequence /= 2;
+			}
+			else {
+				sequence = (sequence * 3) + 1;
+			}
+		}
+		if(count > 750) {
+			printf("%8lld         %10lld\n", i, count);
+		}
+	}
+	printf("\n");
+}
+
+
+********************************************************************************************************
+Part II. Teardown
+
+Subject:		Gabotronics XProtolab Portable micro-oscilloscope
+
+Product URL:	http://www.gabotronics.com/oscilloscopes/xprotolab-portable.htm
+
+Functionality:	2-channel, battery powered 200kHz mixed signal oscilloscope, 8 bit logic analyzer,
+					SPI/I2C/UART protocol sniffer, 50kHz advanced waveform generator
+					in a 3.1" x 1.8" x 0.7" enclosure
+
+Processor:		Atmel AtMEGA32A4U 8-bit. Harvard/RISC architecture (single clock cycle instruction 
+				execution in most cases).
+				34 GPIO pins, 32 general purpose registers, hardware multiplier
+				Up ro 16MB directly addressable program memory/16MB data memory
+				(I believe the chip is internally 16 bit, w/ 8 bit external interface)
+				On-chip USARTS(5), I2C(2), USB2.0(1), SPI(2), AES/DES crypto engine, 12-bit ADC,
+					2-channel 12 bit DAC, 2-pin PDI programming/debug interface, multiple power saving
+					modes, 4-channel DMA controller, 8-channel multi-level interrupt controller,
+					programmable watchdog timer, internal clock oscillators. Et cetera.
+
+clock:			16mHz
+
+memory:			(all on-chip)
+				32K + 4K Flash
+				1K EEPROM
+				4K SRAM (data only -- not executable)
+				(NV memory can be locked to prevent unauthorized access to application code)
+							
+caches: 		none
+
+other ICs:		TL064 quad JFET op amp for various purposes
+				74LVC245 octal bus transceiver for logic analyzer inputs
+
+display:		1.4" OLED 128x64 pixel
+
+I/O:			2 probe inputs, 8 logic analyzer inputs, AWG output, external trigger input
+
+power:			3.7V 600mAh Li-Ion battery
+
+programming:	USB (also used for charging and for optional PC-based control/display), PDI
+
+XScopes I/F:	PC / Linux/ Mac OS X  Windows program for waveform display/instrument control
+
+
+				*** end of document ***
