@@ -31,14 +31,14 @@ int main()
 			}
 			
 			myPwm   = i * 0.004;
-			one28   = myled1 = i & 128;
-			sixty4  = myled2 = i & 64;
-			thirty2 = myled3 = i & 32;
-			sixteen = myled4 = i & 16;
-			eight = myled1 = i & 8;
-			four  = myled2 = i & 4;
-			two   = myled3 = i & 2;
-			one   = myled4 = i & 1;
+			one28   = myled4 = i & 128;
+			sixty4  = myled3 = i & 64;
+			thirty2 = myled2 = i & 32;
+			sixteen = myled1 = i & 16;
+			eight = i & 8;
+			four  = i & 4;
+			two   = i & 2;
+			one   = i & 1;
 			wait(0.1);
 		}
 	}

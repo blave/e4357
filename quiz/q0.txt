@@ -1,0 +1,31 @@
+Quiz 1
+Student: Dave Blevins
+
+
+1. Search: "firmware" at Google
+   https://www.google.com/search?sourceid=chrome-psyapi2&ion=1&espv=2&ie=UTF-8&q=firmware
+
+. . . 
+. . . 
+. . . 
+. . . 
+. . . 
+. . . 
+. . . 
+. . . 
+. . . 
+
+2. Search results are returned within 0.36 seconds.
+
+What is happening in the background?
+
+--------------------------------------
+I'm not sure where to stop with detail, but here goes. The assumption is we're talking about a desktop PC with a wired ethernet connection...
+
+Starting at the keyboard, each keypress is acquired by the PC's BIOS via the USB (serial, differential communications bus) connection between the keyboard and PC, and is communicated to the operating system, which hands it to the application -- in this case, a browser. As a result, the browser program posts an HTTP request to Google. This is transmitted by the CPU to the PCI backplane, and then to the PCI ethernet card. I'm not going to go into details about the 7 layer OSI model, but eventually the packetized request passes down from the top (application) layer and eventually hits the "physical" layer -- i.e. the wire (ethernet cable) that connects the PC to the router.
+
+The router passes the request to the DSL or cable modem (but sometimes the router is built-in to the modem). From there it goes to the datacom company's (e.g. Comcast, ATT...) network. That network sends the request to the "backbone" of the internet (the "big pipes"), where it's eventually routed* to Google's search engine server farm. I'm not sure what happens from that point on in terms of how their server farms are architected, but the request is de-packetized and passed back up through the OSI protocol stack to the application layer, where the Google search engine code does its searching thing, returning the first page of search results back to the requesting machine. That follows a path  that is the reverse of the one that the request took between the requestor and the server farm -- all the way back to the browser application that made the request, which posts the results as a web page via the HTML "language" that the browser understands.
+
+
+
+* re: routing -- the internet "works" because it doesn't depend on a static topology, but adapts to changes in that topology, rerouting data as needed to reach the destination. Each packet of a message may take a completely different route than any other packet, and they can (and most often, do) arrive out-of-order at the destination. The modem/router then re-assembles the packets in their original order.
