@@ -6,11 +6,12 @@ DigitalOut one28(p20), sixty4(p19), thirty2(p18), sixteen(p17);
 DigitalOut eight(p16), four(p15), two(p14), one(p13);
 DigitalOut myled1(LED1), myled2(LED2), myled3(LED3), myled4(LED4);
 DigitalOut red(p25), green(p26);
+DigitalOut rate(p11);
 PwmOut myPwm(p21);
 
 int main()
 {
-	myPwm.period_us(1000);
+	myPwm.period_us(500);
 	
 	while(1)
 	{
@@ -22,10 +23,10 @@ int main()
 				{
 					red = 0;
 					green = 1;
-					wait(0.08);
+					wait(0.09);
 					green = 0;
 					red = 1;
-					wait(0.08);
+					wait(0.09);
 				}
 				red = green = 0;
 				break;
@@ -44,7 +45,8 @@ int main()
 			four  = i & 4;
 			two   = i & 2;
 			one   = i & 1;
-			wait(0.07);				// 0.07 results in approx. 1 second MSD counting
+			rate = !rate;			// output to monitor outer "for" loop frequency
+			wait(0.063);				// 0.063 results in approx. 1 second MSD counting
 		}
 	}
 
