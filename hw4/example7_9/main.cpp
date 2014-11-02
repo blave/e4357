@@ -1,5 +1,7 @@
-/*Program Example 7.9: Sets the mbed up for async communication, and exchanges data with a similar node, sending its own switch positions, and displaying those of the other. 
-                                                                 */
+/*Program Example 7.9: Sets the mbed up for async communication, and
+exchanges data with a similar node, sending its own switch positions,
+and displaying those of the other. */
+
 #include "mbed.h"
 Serial async_port(p9, p10);          //set up TX and RX on pins 9 and 10
 DigitalOut red_led(p25);             //red led
