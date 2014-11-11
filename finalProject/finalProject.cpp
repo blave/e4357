@@ -26,18 +26,18 @@ int main()
     cent = sensor.readObjTempC(Address);	// read IR temp sensor's value
     hpNumber1 = bendy;										// read flex sensor's resistance
 		hpNumberScaled = bendy * 255;					// scale flex sensor reading to the range of the 2 HP hex displays' range
-    pc.printf("Temperature: %.fC; %.fF    Bendy = %x / %x\r \n", cent, fahr = (cent * 1.8) + 32, hpNumberScaled);		// print to USB console
-    bluetooth.printf("Temp: %.fC; %.fF    Bendy = %x\r \n* * *\n", cent, fahr, hpNumberScaled);											// print to BLE Mini
+    pc.printf("Temperature: %.fC / %.fF    Flex Sensor = %d / 0x%x\r \n", cent, fahr = (cent * 1.8) + 32, hpNumberScaled, hpNumberScaled);		// print to USB console
+    bluetooth.printf("Temp: %.fC / %.fF    Flex = %x\r \n* * *\n", cent, fahr, hpNumberScaled);											// print to BLE Mini
 		myLed1 = !myLed1;
     
 		one28   = hpNumberScaled & 128;			// send BCD codes of the flex sensor's value to the 2 HP displays' BCD decoders
 		sixty4  = hpNumberScaled & 64;
 		thirty2 = hpNumberScaled & 32;
 		sixteen = hpNumberScaled & 16;
-		eight = hpNumberScaled & 8;
-    four  = hpNumberScaled & 4;
-    two   = hpNumberScaled & 2;
-    one   = hpNumberScaled & 1;
+		eight   = hpNumberScaled & 8;
+    four    = hpNumberScaled & 4;
+    two     = hpNumberScaled & 2;
+    one     = hpNumberScaled & 1;
 
     wait(0.2);
   }
