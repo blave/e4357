@@ -1,0 +1,64 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: µVision V5.12.0.0
+Copyright (C) 2014 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: Dave Blevins, Safe / Secure / Systems, LIC=----
+ 
+Tool Versions:
+Toolchain:       MDK-Lite  Version: 5.12.0.0
+Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.05 (build 41)
+Assembler:       Armasm.exe V5.05 (build 41)
+Linker/Locator:  ArmLink.exe V5.05 (build 41)
+Library Manager: ArmAr.exe V5.05 (build 41)
+Hex Converter:   FromElf.exe V5.05 (build 41)
+CPU DLL:         SARMCM3.DLL V5.12.0.0
+Dialog DLL:      DCM.DLL V1.13.0.0
+Target DLL:      UL2CM3.DLL V1.153.0.0
+Dialog DLL:      TCM.DLL V1.14.2.0
+ 
+<h2>Project:</h2>
+C:\Users\Dave\Documents\GitHub\e4357\finalProject\finalProject.uvproj
+Project File Date:  11/11/2014
+
+<h2>Output:</h2>
+Build target 'mbed NXP LPC1768'
+compiling finalProject.cpp...
+TMP006_lib\TMP006.h(96): warning:  #1-D: last line of file ends without a newline
+  #endif
+finalProject.cpp(20): warning:  #550-D: variable "hpNumber1" was set but never used
+    int hpNumber1, hpNumberScaled;      // hpNumberScaled is the flex sensor's value scaled to 00 - ff (hex)
+finalProject.cpp: 2 warnings, 0 errors
+linking...
+Program Size: Code=23460 RO-data=2792 RW-data=60 ZI-data=1064  
+After Build - User command #1: fromelf --bin -o f:\finalProject_LPC1768.bin build\finalProject.axf
+".\build\finalProject.axf" - 0 Error(s), 2 Warning(s).
+
+<h2>Collection of Component include folders:</h2>
+  C:\Users\Dave\Documents\GitHub\e4357\finalProject\RTE
+  C:\Keil_v5\ARM\PACK\Keil\LPC1700_DFP\2.0.0\Device\Include
+
+<h2>Collection of Component Files used:</h2>
+2.0.0\Device\Include
+
+<h2>Collection of Component Files used:</h2>
+ession must have integral or enum type
+      two   = hpNumber & 2;
+finalProject.cpp(38): error:  #847: expression must have integral or enum type
+      one   = hpNumber & 1;
+finalProject.cpp: 1 warning, 8 errors
+compiling TMP006.cpp...
+TMP006_lib/TMP006.h(96): warning:  #1-D: last line of file ends without a newline
+  #endif
+TMP006_lib/TMP006.cpp: 1 warning, 0 errors
+".\build\finalProject.axf" - 8 Error(s), 2 Warning(s).
+
+<h2>Collection of Component include folders:</h2>
+  C:\Users\Dave\Documents\GitHub\e4357\finalProject\RTE
+  C:\Keil_v5\ARM\PACK\Keil\LPC1700_DFP\2.0.0\Device\Include
+
+<h2>Collection of Component Files used:</h2>
+Target not created.
