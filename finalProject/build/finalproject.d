@@ -80,4 +80,5 @@
 .\build\finalproject.o: mbed\wait_api.h
 .\build\finalproject.o: mbed\sleep_api.h
 .\build\finalproject.o: mbed\rtc_time.h
+.\build\finalproject.o: ble_mini.h
 .\build\finalproject.o: TMP006_lib\TMP006.h
