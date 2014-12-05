@@ -1,0 +1,76 @@
+BEGIN
+--------------------------------------------------------------------
+Q1: Is there any compile error with the following code (if any)? YES
+
+	unsigned int Arr[16];
+	3[Arr] = 7; 
+ 
+Explain:
+
+2nd line should be Arr[3] = 7;
+
+
+--------------------------------------------------------------------
+Q2: What is the difference between the following 3 statements? 
+
+const int * px; 	// px points to constant integer
+int const * px; 	// px points to constant integer
+int * const px; 	// px pointer is a constant
+
+Is there any compile error for the following cases?
+case1: 
+int x = 13; 
+const int * px; 	// px points to "x" value, which is now a constant
+px = & x;			// this is OK; px is set to address of constant "x"
+
+case 2: 
+int x = 13; 
+int const * px; 	// same as case 1
+px = & x; 
+
+case 3: 
+int x = 13; 
+int * const px; 
+px = & x; 			// NO -- cannot assign address of x to constant px
+
+--------------------------------------------------------------------
+Q3: Write a function to set or clear ith bit of a 32-bit register. 
+	Where ith (0-based) := {0, 1, 2, …, 31 } 
+void reg_set(volatile unsigned int * pReg, int ith) 
+{ 
+	unsigned int mask = 0x80000000 ;				// starting mask
+
+	mask = mask	>> ith;								// shift "set" bit to the right based on "ith"
+	*pReg = *pReg | mask;							// mask Reg with mask to set desired bit
+} 
+
+void reg_clear(volatile unsigned int * pReg, int ith) 
+{ 
+	unsigned int mask = 0x80000000 ;				// starting mask
+
+	mask = mask	>> ith;								// shift "clear" bit to the right based on "ith"
+	*pReg = *pReg & ~mask;							// mask Reg with mask to clear desired bit
+} 
+
+--------------------------------------------------------------------
+Q4: Write a swap function in C.
+void swap(unsigned int * px, unsigned int *py) { 
+
+int temp = *px;
+*px = *py;
+*py = temp;
+
+} 
+
+--------------------------------------------------------------------
+Q5:	What is the output of the following code? (Given: sizeof(unsigned int) is 4)
+
+unsigned int Arr[16]; 
+unsigned int a0 = (unsigned int) &Arr[0]; 
+unsigned int a3 = (unsigned int) &Arr[3]; 
+printf(“%d\n”, a3 – a0); 
+
+Answer = 12
+
+
+END
